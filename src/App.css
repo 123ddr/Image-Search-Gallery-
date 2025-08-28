@@ -1,38 +1,135 @@
+/* App container */
 .App {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background: #f5f7fa;
   min-height: 100vh;
+  color: #333;
+}
+
+/* Header */
+.header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
+  background: #1e1e2f;
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.header p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Search Bar */
+.search-bar {
+  margin: 2rem auto;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.search-bar input {
+  padding: 0.6rem 1rem;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.search-bar input:focus {
+  border-color: #1e1e2f;
+  box-shadow: 0 0 5px rgba(30, 30, 47, 0.5);
+}
+
+.search-bar button {
+  padding: 0.6rem 1.2rem;
+  margin-left: 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: #1e1e2f;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.search-bar button:hover {
+  background-color: #34344d;
+  transform: translateY(-2px);
+}
+
+/* Image List Grid */
+.image-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 2rem;
+}
+
+/* Image Card */
+.image-card {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+}
+
+.image-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.image-card button {
+  display: block;
+  width: calc(100% - 20px);
+  margin: 10px auto;
+  padding: 0.5rem 0;
+  border: none;
+  border-radius: 25px;
+  background-color: #ff6b6b;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.image-card button:hover {
+  background-color: #ff4757;
+  transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .search-bar {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .search-bar input {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+
+  .search-bar button {
+    width: 50%;
   }
 }

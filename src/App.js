@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
+import ImageList from "./components/ImageList";
+import { FavoritesProvider } from "./context/FavoritesContext";
+import "./App.css";
 
 function App() {
+  const [images, setImages] = useState([]);
+  
+  const UNSPLASH_KEY = "TftW2G4uMJz2ognRharg3SyBTT0K-npHad-mrAPeFzk";
+
+  const searchImages = async (term) => {
+    try {
+      const response = await fetch(
+        `https://api.unsplash.com/search/photos?query=${term}&client_id=${UNSPLASH_KEY}`
+      );
+      if (!response.ok) throw new Error("Failed to fetch images");
+
+      const data = await response.json();
+      console.log("Fetched images:", data.results); 
+      setImages(data.results || []);
+    } catch (error) {
+      console.error("Error fetching images:", error);
+      setImages([]);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FavoritesProvider>
+      <div className="App">
+        <Header />
+        <SearchBar onSearch={searchImages} />
+        <ImageList images={images} />
+      </div>
+    </FavoritesProvider>
   );
 }
 
