@@ -18,6 +18,6 @@ This is a single-page React application that allows users to search for images u
 - **React** (with Hooks)
 - **Unsplash API**
 - **React Context API**
-- **CSS
+- **CSS**
 
 
